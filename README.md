@@ -1,7 +1,7 @@
 
 # Topgg-CrowdinBot
 
-Top.gg Crowdin-Stats Discord bot used on discord.gg/dbl to provide stats about current site translations on Crowdin by using the Crowdin API.
+Top.gg Crowdin-Stats Discord bot used on discord.gg/dbl to provide stats about current site translations ([topgg](https//https://crowdin.com/project/topgg) / [topgg-entities](https://crowdin.com/project/topgg-entities)) on Crowdin by using the Crowdin API.
 
 ## Running the bot
 
