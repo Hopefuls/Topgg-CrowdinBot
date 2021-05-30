@@ -19,6 +19,7 @@ public class StatsCommand implements CommandExecutor {
 
     public static void executeFor(CommandData data, ProjectType type) {
 
+
         CommandMessage message = data.getCommandMessage();
         Project project = Crowdin.getProjectFromId(type.projectId);
 
