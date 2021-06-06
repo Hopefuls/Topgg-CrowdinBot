@@ -1,5 +1,7 @@
 package org.topgg.crowdingg;
 
+import com.vdurmont.emoji.EmojiParser;
+
 public enum Variables {
     CROWDIN_API_URL("https://api.crowdin.com/api/v2/"),
 
@@ -10,10 +12,14 @@ public enum Variables {
     PROJECT_ID_BACKEND("456000"),
 
     // Emojis
-    EMOJI_FINISHED("<:finished:848022208763920434>"),
-    EMOJI_PARTIALLY("<:partially:848027954926846002>"),
-    EMOJI_NOT_DONE("<:not_done:848026313024602132>");
+    EMOJI_FINISHED("<:upvote:778416296630157333>"),
+    EMOJI_PARTIALLY("<:neutral:782246935242604584>"),
+    EMOJI_NOT_DONE("<:downvote:778416297347776533>"),
+    PAGINATION_RIGHT(EmojiParser.parseToUnicode(":arrow_forward:")),
+    PAGINATION_LEFT(EmojiParser.parseToUnicode(":arrow_backward:")),
 
+    // Roles
+    ROLE_ID_TRANSLATOR("842556283450425344");
     public String value;
 
     Variables(String val) {

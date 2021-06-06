@@ -1,6 +1,8 @@
 package org.topgg.crowdingg.utils.crowdin.entity;
 
 import org.json.JSONObject;
+import org.topgg.crowdingg.Main;
+import org.topgg.crowdingg.utils.crowdin.Crowdin;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,14 @@ public class Language {
         }
 
         return "null";
+    }
+
+    public static JSONObject getLanguageFromId(String langId) {
+        System.out.println("checking ");
+        JSONObject response = Crowdin.parseLanguageFromSupportedLanguagesArray(Main.crowdinSupportedLanguages, langId);
+
+        // System.out.println(response.toString(3));
+        return response;
     }
 
     public final String getName() {

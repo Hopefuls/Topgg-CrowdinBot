@@ -23,6 +23,10 @@ public class Project {
         return projectData.getString("name");
     }
 
+    public final String getProjectIdentifier() {
+        return projectData.getString("identifier");
+    }
+
     public final ArrayList<String> getProjectTargetLanguageIds() {
         ArrayList<String> languageIds = new ArrayList<>();
 
@@ -38,7 +42,7 @@ public class Project {
 
         ArrayList<ProjectProgress> progresses = new ArrayList<>();
 
-        JSONObject responseData = Crowdin.getJSONFromEndpoint(Variables.ENDPOINT_PROJECT.value + "/" + projectId + "/languages/progress");
+        JSONObject responseData = Crowdin.getJSONFromEndpoint(Variables.ENDPOINT_PROJECT.value + "/" + projectId + "/languages/progress?limit=50");
 
         responseData.getJSONArray("data").forEach(o -> {
             JSONObject languageProgress = (JSONObject) o;

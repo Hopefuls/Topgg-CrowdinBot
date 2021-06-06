@@ -15,6 +15,10 @@ public class ProjectProgress {
         return data.getString("languageId");
     }
 
+    public final String getLetterCode() {
+        return data.getString("twoLettersCode");
+    }
+
     public final JSONObject getPhrasesCount() {
         return data.getJSONObject("phrases");
     }

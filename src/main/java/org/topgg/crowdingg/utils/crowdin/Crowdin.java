@@ -41,10 +41,24 @@ public class Crowdin {
     }
 
     public static JSONArray getSupportedLanguagesInJSONArray() {
-        JSONObject response = getJSONFromEndpoint(Variables.ENDPOINT_GENERAL_LANGUAGES.value);
+        JSONObject response = getJSONFromEndpoint(Variables.ENDPOINT_GENERAL_LANGUAGES.value + "?limit=500");
         JSONArray dataArray = response.getJSONArray("data");
         return dataArray;
 
+    }
+
+    public static JSONObject parseLanguageFromSupportedLanguagesArray(JSONArray array, String code) {
+
+        for (int i = 0; i < array.length(); i++) {
+
+            JSONObject object = array.getJSONObject(i).getJSONObject("data");
+
+            if (object.getString("id").equalsIgnoreCase(code)) {
+                return object;
+            }
+
+        }
+        return null;
     }
 
 
@@ -53,6 +67,8 @@ public class Crowdin {
                 .url(Variables.CROWDIN_API_URL.value + endpoint)
                 .addHeader("Authorization", "Bearer " + Main.crowdinBearerToken)
                 .build();
+
+        System.out.println("GET " + Variables.CROWDIN_API_URL.value + endpoint);
 
         try {
             Response response = Main.okHttpClient.newCall(request).execute();
