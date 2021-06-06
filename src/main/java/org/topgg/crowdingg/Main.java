@@ -35,10 +35,6 @@ public class Main {
 
         builder.build();
 
-        api.getServers().forEach(server -> {
-            System.out.println(server.getName() + " - " + server.getIdAsString());
-        });
-
 
     }
 
