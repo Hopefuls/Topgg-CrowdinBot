@@ -42,8 +42,7 @@ public class Crowdin {
 
     public static JSONArray getSupportedLanguagesInJSONArray() {
         JSONObject response = getJSONFromEndpoint(Variables.ENDPOINT_GENERAL_LANGUAGES.value + "?limit=500");
-        JSONArray dataArray = response.getJSONArray("data");
-        return dataArray;
+        return response.getJSONArray("data");
 
     }
 

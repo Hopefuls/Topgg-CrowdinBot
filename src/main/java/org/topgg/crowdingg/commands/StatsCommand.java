@@ -110,7 +110,6 @@ public class StatsCommand implements CommandExecutor {
                     sb.append("`--phrases` for phrases-count on translations\n");
                     sb.append("`--backend` for backend translation stats\n");
                     sb.append("`--web` for web translation stats");
-                    tempCurrLangCount = 0;
 
                     EmbedBuilder eb = new EmbedBuilder()
                             .setTitle(project.getProjectName())
@@ -120,6 +119,9 @@ public class StatsCommand implements CommandExecutor {
                     eb.setUrl("https://crowdin.com/project/" + project.getProjectIdentifier());
 
                     paginatedMessage.appendPage(eb);
+                    tempCurrLangCount = 0;
+
+                    sb = new StringBuilder();
 
                 }
 
