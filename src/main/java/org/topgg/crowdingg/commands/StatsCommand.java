@@ -1,9 +1,10 @@
 package org.topgg.crowdingg.commands;
 
-import me.hopedev.commandhandler.Command;
-import me.hopedev.commandhandler.CommandData;
-import me.hopedev.commandhandler.CommandExecutor;
-import me.hopedev.commandhandler.CommandMessage;
+
+import io.github.daflamingfox.Command;
+import io.github.daflamingfox.CommandData;
+import io.github.daflamingfox.CommandMessage;
+import io.github.daflamingfox.IExecutor;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.permission.Role;
@@ -23,7 +24,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class StatsCommand implements CommandExecutor {
+public class StatsCommand implements IExecutor {
 
     public static Message executeFor(CommandData data, ProjectType type, DisplayType displayType) {
 
@@ -123,6 +124,14 @@ public class StatsCommand implements CommandExecutor {
 
                     sb = new StringBuilder();
 
+                    sb.append("Translation Progress:").append("\n");
+                    if (message.getArgs().contains("--words"))
+                        sb.append("- Amount of **words**\n");
+                    else
+                        sb.append("- Amount of **phrases**\n");
+
+                    sb.append("``(total/translated/approved)``\n\n");
+
                 }
 
 
@@ -213,7 +222,7 @@ public class StatsCommand implements CommandExecutor {
         // sb.append("\n`--full` for a more detailed list of translations");
     }
 
-    @Override
+
     public void execute(CommandData data, ArrayList<Command> commands) {
 
         System.out.println("Received!");
@@ -236,7 +245,10 @@ public class StatsCommand implements CommandExecutor {
                     ProjectType.WEB, DisplayType.SHORT);
         }
 
-        messageResponse.getApi().getThreadPool().getDaemonScheduler().schedule((Runnable) messageResponse::delete, 5, TimeUnit.MINUTES);
+        messageResponse.getApi().getThreadPool().getDaemonScheduler().schedule(() -> {
+            PaginatedMessage.paginationCache.remove(messageResponse.getIdAsString());
+            messageResponse.delete("Autodeletion after 5 Minutes.");
+        }, 5, TimeUnit.MINUTES);
 
 
         // executeFor(data, ProjectType.WEB);
